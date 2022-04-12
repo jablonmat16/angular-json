@@ -1,0 +1,95 @@
+
+<div class="container">
+    
+   
+    <h2 style="border: 2px solid grey;">
+        <style>
+            p    {color: rgb(255, 30, 135);}
+            
+        </style>
+
+        <ul class="text-center list-intine py-3">
+            
+            <li class="list-inline-item">  
+                <p> From Environment  </p>
+            </li>
+            
+            <li class="list-inline-item">    
+                <head>
+                    <title>Select Box Control</title>
+                </head>
+                    
+                <body>
+                <form>
+                    <select name = "dropdown" >
+                        <option value = "JSON1" selected>{{ json[0].policies[0]["vhost"] }}</option>
+                        <option value = "JSON2">{{ json[1].policies[0]["vhost"] }}</option>
+                        
+                    </select>
+                </form>
+                </body>
+            </li>
+
+            <li class="list-inline-item"> 
+                <p> Destination Environment </p>
+            </li>
+            <li class="list-inline-item"> 
+                <head>
+                    <title>Select Box Control</title>
+                </head>
+
+                <body>
+                    <form>
+                        <select name = "dropdown">
+                        <option value = "JSON1">{{ json[0].policies[0]["vhost"] }}</option>
+                        <option value = "JSON2" selected>{{ json[1].policies[0]["vhost"] }}</option>
+                        
+                        </select>
+                    </form>
+                </body>
+            </li>
+
+            <button (click) = "getEnvironment()" class = "btn btn-info"> COMPARE </button>
+            <button (click) = "deleteSelection()" class = "btn btn-danger style"> PROMOTE </button>
+        
+        </ul>
+    </h2>
+
+           
+    </div>
+
+    <div class="scroller">
+
+        <table id = "customers" class = "table table-striped">
+            <thead>
+                
+                <tr>
+                   
+                    <th> OPERATION </th>
+                    <th> PATH </th>
+                    <th> VALUE </th>
+                    <th> SELECT </th>  
+        
+                </tr>
+                
+                
+            </thead>
+            <tbody>
+                <tr *ngFor = "let environment of environment">
+                    <td> {{ environment.op }}</td>
+                    <td> {{ environment.path }}</td>
+                    <td> {{ environment.value | json }}</td>
+                    <td><input 
+                        class="form-check-input" 
+                        type="checkbox"
+                        [value]="environment.path"
+                        [checked]="environment.select"
+                        (change)="onChangeSelect($event)"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        
+    
+<router-outlet></router-outlet>
+   

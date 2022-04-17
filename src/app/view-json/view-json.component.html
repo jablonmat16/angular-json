@@ -1,0 +1,66 @@
+<table>
+  
+        <td *ngFor = "let jsons of json">    
+                <tr> rabbit_version: {{ jsons.rabbit_version }} </tr>
+                <tr> parameters:[ {{ jsons.parameters }} </tr>
+                <tr>]</tr>
+                <tr> policies:[ </tr>  
+                <div *ngFor = "let policy of jsons.policies">
+                        <tr>{{ "{" }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;vhost: {{ policy.vhost }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;name: {{ policy.name }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;pattern: {{ policy.pattern }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;apply-to: {{ policy["apply-to"]}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;definition: {{ "{" }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ha-mode: {{ policy.definition["ha-mode"] }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ha-params: {{ policy.definition["ha-params"] }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ha-promote-on-failure: {{ policy.definition["ha-promote-on-failure"] }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ha-promote-on-shutdown: {{ policy.definition["ha-promote-on-shutdown"] }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ha-sync-mode: {{ policy.definition["ha-sync-mode"] }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;queue-mode: {{ policy.definition["queue-mode"] }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;{{ "}" }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;priority: {{ policy.priority }}</tr>
+                        <tr>{{ "}" }}</tr>
+                </div>
+                <tr>]</tr>
+                <tr> queues:[</tr>
+                <div *ngFor = "let queue of jsons.queues">
+                        <tr>{{ "{" }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;name: {{ queue.name }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;durable: {{ queue.durable }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;auto_delete: {{ queue.auto_delete }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;arguments: {{ "{" }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x-queue-type: {{queue.arguments["x-queue-type"]}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;{{ "}" }}</tr>
+                        <tr>{{ "}" }}</tr>
+                </div>
+                <tr>]</tr>
+                <tr> exchanges:[</tr>
+                <div *ngFor = "let exchange of jsons.exchanges">
+                        <tr>{{ "{" }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;name: {{exchange.name}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;type: {{exchange.type}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;durable: {{exchange.durable}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;auto_delete: {{exchange.auto_delete}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;internal: {{exchange.internal}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;arguments: {{ "{" }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x-queue-type: {{exchange.arguments["x-queue-type"]}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;{{ "}" }}</tr>
+                        <tr>{{ "}" }}</tr>
+                </div>
+                <tr>]</tr>
+                <tr> bindings:[</tr>
+                <div *ngFor = "let binding of jsons.bindings">
+                        <tr>{{ "{" }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;source: {{binding.source}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;destination: {{binding.destination}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;destination_type: {{binding.destination_type}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;routing_key: {{binding.routing_key}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;arguments: {{ "{" }}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x-queue-type: {{binding.arguments["x-queue-type"]}}</tr>
+                        <tr>&nbsp;&nbsp;&nbsp;&nbsp;{{ "}" }}</tr>
+                        <tr>{{ "}" }}</tr>
+                </div>
+                <tr>]</tr>
+        </td>
+</table>

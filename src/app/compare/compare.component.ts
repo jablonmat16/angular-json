@@ -16,6 +16,7 @@ export class CompareComponent implements OnInit {
   json: Json[];
   environment: Environment[];
   compare: Environment[];
+  checkedAll: boolean;
 
   constructor(private jsonService: JsonService, private environmentService: EnvironmentService,
     private router: Router, private http: HttpClient) { }
@@ -23,6 +24,7 @@ export class CompareComponent implements OnInit {
   ngOnInit(): void {
     this.getJson();
     console.log(this.json);
+    this.checkedAll = false;
     //this.getEnvironment();
   }
 
@@ -66,6 +68,25 @@ export class CompareComponent implements OnInit {
   //     }
   //   }
   // }
+
+  checkAll(){
+    if(!this.checkedAll){
+      for(var env of this.environment){
+        if(env.op != "remove" ){
+          env.select = true;
+        }
+      }
+      this.checkedAll = true;
+    }
+    else{
+      for(var env of this.environment){
+        if(env.op != "remove" ){
+          env.select = false;
+        }
+      }
+      this.checkedAll = false;
+    }
+  }
 
   onChangeSelect($event){
     const path = $event.target.value;

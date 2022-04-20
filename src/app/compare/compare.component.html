@@ -22,8 +22,8 @@
                 <body>
                 <form>
                     <select name = "dropdown" >
-                        <option value = "JSON1" selected></option>
-                        <option value = "JSON2"></option>
+                        <option value = "JSON1" selected>JSON1</option>
+                        <option value = "JSON2">JSON2</option>
                         
                     </select>
                 </form>
@@ -37,16 +37,17 @@
                 <head>
                     <title>Select Box Control</title>
                 </head>
-
+                
                 <body>
                     <form>
-                        <select name = "dropdown">
-                        <option value = "JSON1"></option>
-                        <option value = "JSON2" selected></option>
-                        
+                        <select name = "dropdown" >
+                            <option value = "JSON1" selected>JSON1</option>
+                            <option value = "JSON2">JSON2</option>
+                            
                         </select>
                     </form>
-                </body>
+                    </body>
+                
             </li>
 
             <button (click) = "getEnvironment()" class = "btn btn-info"> COMPARE </button>
@@ -57,7 +58,7 @@
 
            
     </div>
-
+    <button (click) = "checkAll()" class = "btn btn-info"> SELECT ALL </button>
     <div class="scroller">
 
             <table id = "customers" class = "table table-striped">

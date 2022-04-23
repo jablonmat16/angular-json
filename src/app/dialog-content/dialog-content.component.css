@@ -1,0 +1,9 @@
+th, td {
+    border: 1px solid black;
+    border-radius: 10px;
+    word-break: break-word
+  }
+table{
+    table-layout: fixed;
+    width: 1200px;
+}

@@ -11,10 +11,15 @@ export class JsonService {
   //json: Json;
 
   private baseURL = "http://localhost:8080/api/v1/jsons"
+  private mergeURL = "http://localhost:8080/api/v1/merged"
 
   constructor(private httpClient: HttpClient) { }
 
-  getJsonService(): Observable<Json[]>{
-    return this.httpClient.get<Json[]>(`${this.baseURL}`);
+  getJsonService(): Observable<string>{
+    return this.httpClient.get<string>(`${this.baseURL}`);
+  }
+
+  getMergedService(): Observable<string>{
+    return this.httpClient.get<string>(`${this.mergeURL}`);
   }
 }

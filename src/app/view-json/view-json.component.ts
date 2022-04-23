@@ -10,7 +10,7 @@ import { Json } from '../json';
 })
 export class ViewJsonComponent implements OnInit {
 
-  json: Json[];
+  json: String;
 
   constructor(private jsonService: JsonService, 
     private router: Router) { }

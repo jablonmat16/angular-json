@@ -5,6 +5,8 @@ import { Environment } from '../environment';
 import { EnvironmentService } from '../environment.service';
 import { Json } from '../json';
 import { JsonService } from '../json.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogContentComponent } from '../dialog-content/dialog-content.component';
 
 @Component({
   selector: 'app-compare',
@@ -13,28 +15,29 @@ import { JsonService } from '../json.service';
 })
 export class CompareComponent implements OnInit {
 
-  json: Json[];
+  //json: Json[];
   environment: Environment[];
   compare: Environment[];
   checkedAll: boolean;
+  toDisplay = false;
 
   constructor(private jsonService: JsonService, private environmentService: EnvironmentService,
-    private router: Router, private http: HttpClient) { }
+    private router: Router, private http: HttpClient, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getJson();
-    console.log(this.json);
+    //this.getJson();
+    //console.log(this.json);
     this.checkedAll = false;
     //this.getEnvironment();
   }
 
-  private getJson(){
-    this.jsonService.getJsonService().subscribe(data => {
-      //console.log(data);
-      this.json = data;
-      //console.log(this.json);
-    });
-  }
+  // private getJson(){
+  //   this.jsonService.getJsonService().subscribe(data => {
+  //     //console.log(data);
+  //     this.json = data;
+  //     //console.log(this.json);
+  //   });
+  // }
 
   getEnvironment(){
     this.environmentService.getEnvironmentService().subscribe(data => {
@@ -46,13 +49,21 @@ export class CompareComponent implements OnInit {
 
   updateEnvironment(): void{
     this.environmentService.updateEnvironmentService(this.environment).subscribe( data =>{
-      this.goToEnvironmentList();
+      //this.goToEnvironmentList();
     }
     , error => console.log(error));
   }
 
   goToEnvironmentList(){
     this.router.navigate(['/test']);
+  }
+
+  openDialog(){
+    this.dialog.open(DialogContentComponent);
+  }
+
+  toggleButton(){
+    this.toDisplay = true;
   }
 
   // deleteCompare(path: string){
@@ -72,20 +83,17 @@ export class CompareComponent implements OnInit {
   checkAll(){
     if(!this.checkedAll){
       for(var env of this.environment){
-        if(env.op != "remove" ){
-          env.select = true;
-        }
+        env.select = true;      
       }
       this.checkedAll = true;
     }
     else{
       for(var env of this.environment){
-        if(env.op != "remove" ){
-          env.select = false;
-        }
+        env.select = false;
       }
       this.checkedAll = false;
     }
+    console.log(this.environment);
   }
 
   onChangeSelect($event){

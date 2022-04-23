@@ -51,7 +51,10 @@
             </li>
 
             <button (click) = "getEnvironment()" class = "btn btn-info"> COMPARE </button>
-            <button (click) = "updateEnvironment()" class = "btn btn-danger style"> PROMOTE </button>
+            <button (click) = "[updateEnvironment(), toggleButton()]" class = "btn btn-danger style"> PROMOTE </button>
+            <div *ngIf = "toDisplay">
+                <button (click) = "openDialog()" class = "btn btn-info"> RESULTS </button>
+            </div>
         
         </ul>
     </h2>
@@ -76,7 +79,6 @@
                     
                 </thead>
                 <tbody *ngFor = "let environment of environment" >
-                    <tr *ngIf = "environment.op != 'remove'">
                     
                             <td> {{ environment.op }}</td>
                             <td> {{ environment.path }}</td>
@@ -87,8 +89,6 @@
                                 [value]="environment.path"
                                 [checked]="environment.select"
                                 (change)="onChangeSelect($event)"></td>
-                    
-                    </tr>
                 </tbody>
             </table>
     </div>
